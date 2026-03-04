@@ -8,7 +8,7 @@ export default function SignupButton({ content, onClick }) {
                 borderRadius: '30px',
                 color: 'rgba(0, 0, 0, 0.5)',
                 fontWeight: 'bold',
-                fontSize: '1.4rem',
+                fontSize: '2.1rem',
                 padding: '14px 0',
                 width: '320px',
                 height: '90px',
