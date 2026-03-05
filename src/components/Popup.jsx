@@ -14,7 +14,8 @@ export default function Popup({ message, onClose }) {
             }} />
 
             {/* Popup doboz */}
-            <div style={{
+            <div 
+            style={{
                 position: 'fixed',
                 top: '50%', left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -36,7 +37,15 @@ export default function Popup({ message, onClose }) {
                 }}>
                     {message}
                 </p>
-                <button onClick={onClose} style={{
+                <button onClick={onClose}
+                onMouseEnter={e => {
+                    e.target.style.filter = 'brightness(1.2)'
+                    e.target.style.transform = 'scale(1.05)'
+                }}
+                onMouseLeave={e => {
+                    e.target.style.filter = 'brightness(1)'
+                    e.target.style.transform = 'scale(1)'
+                }}style={{
                     background: 'linear-gradient(to bottom, #4a90d9, #1a5fa8)',
                     border: '3px solid #0a3f78',
                     borderRadius: '50px',

@@ -16,7 +16,7 @@ import Popup from '../components/Popup'
 export default function RegistrationPage() {
     const navigate = useNavigate()
     const [navigateTo, setNavigateTo] = useState("")
-    
+
 
     const [email, setEmail] = useState("")
     const [felhasznalonev, setFelhasznalonev] = useState("")
@@ -36,8 +36,8 @@ export default function RegistrationPage() {
 
             <BackButton src={Back} onClick={() => navigate(-1)} />
 
-            <div className='mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={25} />
+            <div className='d-flex justify-content-center mt-4'>
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
             </div>
 
             <div className='d-flex flex-column align-items-center justify-content-center gap-4 flex-grow-1'>
@@ -92,7 +92,7 @@ export default function RegistrationPage() {
                 Van fiókom
             </Link>
 
-            <div className='position-fixed bottom-0 start-0 m-3'>
+            <div className='position-fixed top-1 end-0 m-3'>
                 <InfoButton src={Info} onClick={() => navigate("/description")} />
             </div>
         </div>

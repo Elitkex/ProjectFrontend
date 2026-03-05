@@ -18,8 +18,8 @@ export default function FirstPage() {
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
             {/* Logó felül */}
-            <div className='mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={25} />
+            <div className='d-flex justify-content-center mt-4'>
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
             </div>
 
             {/* Gombok középen */}
@@ -29,7 +29,7 @@ export default function FirstPage() {
             </div>
 
             {/* Info gomb bal lent */}
-            <div className='position-fixed bottom-0 start-0 m-3'>
+            <div className='position-fixed top-1 end-0 m-3'>
                 <InfoButton src={Info} onClick={() => navigate("/description")} />
             </div>
         </div>

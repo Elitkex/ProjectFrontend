@@ -15,8 +15,9 @@ import Back from '../assets/back.png'
 export default function HomePage() {
     const navigate = useNavigate()
     const [popup, setPopup] = useState("")
-    
+
     const [navigateTo, setNavigateTo] = useState("")
+
 
     return (
         <div className='d-flex flex-column align-items-center vh-100'>
@@ -31,8 +32,8 @@ export default function HomePage() {
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
             {/* Logó felül */}
-            <div className='mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={25} />
+            <div className='d-flex justify-content-center mt-4'>
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
             </div>
 
             {/* Gombok középen */}
@@ -41,16 +42,16 @@ export default function HomePage() {
                 <HomeButtons content="Edit Profile" onClick={() => navigate("/settings")} />
                 <HomeButtons content="Log-out" color='red' onClick={async () => {
                     const res = await kijelentkezes()
-                    setPopup(res.message)
                     if (res.result) {
-                        setNavigateTo("/")
+                        localStorage.removeItem('bejelentkezve')
+                        setNavigateTo("/login-signup")
                     }
                     setPopup(res.message)
                 }} />
             </div>
 
             {/* Info gomb bal lent */}
-            <div className='position-fixed bottom-0 start-0 m-3'>
+            <div className='position-fixed top-1 end-0 m-3'>
                 <InfoButton src={Info} onClick={() => navigate("/description")} />
             </div>
         </div>

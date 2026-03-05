@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Background from '/src/assets/background.png'
 import LogoKep from '/src/components/LogoKep.jsx'
 import Logo from '/src/assets/logo.png'
@@ -23,7 +23,9 @@ export default function LoginPage() {
     const [email, setEmail] = useState(
         localStorage.getItem('rememberMe') === 'true' ? localStorage.getItem('savedEmail') || "" : ""
     )
-    const [jelszo, setJelszo] = useState("")
+    const [jelszo, setJelszo] = useState(
+        localStorage.getItem('rememberMe') === 'true' ? localStorage.getItem('savedJelszo') || "" : ""
+    )
     const [rememberMe, setRememberMe] = useState(
         localStorage.getItem('rememberMe') === 'true'
     )
@@ -41,13 +43,13 @@ export default function LoginPage() {
             <BackButton src={Back} onClick={() => navigate(-1)} />
 
             {/* Info gomb jobb fent */}
-            <div className='position-fixed bottom-0 start-0 m-3'>
+            <div className='position-fixed top-1 end-0 m-3'>
                 <InfoButton src={Info} onClick={() => navigate("/description")} />
             </div>
 
             {/* Logó felül */}
-            <div className='mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={25} />
+            <div className='d-flex justify-content-center mt-4'>
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
             </div>
 
             {/* Mezők + gomb középen */}
@@ -70,8 +72,10 @@ export default function LoginPage() {
                         if (res.result) {
                             if (rememberMe) {
                                 localStorage.setItem('savedEmail', email)
+                                localStorage.setItem('savedJelszo', jelszo)
                             } else {
                                 localStorage.removeItem('savedEmail')
+                                localStorage.removeItem('savedJelszo')
                                 localStorage.removeItem('rememberMe')
                             }
                             setNavigateTo("/home")
@@ -79,8 +83,30 @@ export default function LoginPage() {
                         }
                     }} />
                 </div>
-
             </div>
+            <Link to="/signup" style={{
+                color: 'white',
+                textDecoration: 'none',
+                fontWeight: 'bold',
+                fontSize: '1.1rem',
+                textShadow: '0 2px 6px rgba(0,0,0,0.8)',
+                background: 'rgba(0,0,0,0.3)',
+                padding: '6px 20px',
+                borderRadius: '20px',
+                marginBottom: '22px',
+                transition: 'all 0.2s ease'
+            }}
+                onMouseEnter={e => {
+                    e.target.style.background = 'rgba(255,255,255,0.25)'
+                    e.target.style.transform = 'scale(1.05)'
+                }}
+                onMouseLeave={e => {
+                    e.target.style.background = 'rgba(0,0,0,0.3)'
+                    e.target.style.transform = 'scale(1)'
+                }}
+            >
+                Még nincs fiókom
+            </Link>
         </div >
     )
 }

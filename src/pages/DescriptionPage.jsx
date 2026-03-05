@@ -24,8 +24,8 @@ export default function DescriptionPage() {
             <BackButton src={Back} onClick={() => navigate(-1)} />
 
             {/* Logó felül */}
-            <div className='mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={25} />
+            <div className='d-flex justify-content-center mt-4'>
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
             </div>
 
             {/* Szöveg doboz */}
