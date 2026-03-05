@@ -1,11 +1,58 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { useNavigate } from 'react-router-dom'
+import Background from '/src/assets/background.png'
+import LogoKep from '/src/components/LogoKep.jsx'
+import Logo from '/src/assets/logo.png'
+import Info from '../assets/info.png'
+import InfoButton from '../components/InfoButton'
+import Popup from '../components/Popup'
 import { useState } from 'react'
-
+import { kijelentkezes } from '../api'
+import HomeButtons from '../components/HomeButtons'
+import BackButton from '../components/BackButton'
+import Back from '../assets/back.png'
 
 export default function HomePage() {
-  const [count, setCount] = useState(0)
+    const navigate = useNavigate()
+    const [popup, setPopup] = useState("")
+    
+    const [navigateTo, setNavigateTo] = useState("")
 
-  return (
-    <div></div>
-  )
+    return (
+        <div className='d-flex flex-column align-items-center vh-100'>
+            <Popup message={popup} onClose={() => {
+                setPopup("")
+                if (navigateTo) navigate(navigateTo)
+            }} />
+
+            <BackButton src={Back} onClick={() => navigate(-1)} />
+
+            <div className="position-fixed top-0 start-0 w-100 h-100"
+                style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
+
+            {/* Logó felül */}
+            <div className='mt-4'>
+                <LogoKep src={Logo} alt={"logo"} width={25} />
+            </div>
+
+            {/* Gombok középen */}
+            <div className='d-flex flex-column align-items-center justify-content-center gap-3 flex-grow-1'>
+                <HomeButtons content="Deck Builder" onClick={() => navigate("/deck")} />
+                <HomeButtons content="Edit Profile" onClick={() => navigate("/settings")} />
+                <HomeButtons content="Log-out" color='red' onClick={async () => {
+                    const res = await kijelentkezes()
+                    setPopup(res.message)
+                    if (res.result) {
+                        setNavigateTo("/")
+                    }
+                    setPopup(res.message)
+                }} />
+            </div>
+
+            {/* Info gomb bal lent */}
+            <div className='position-fixed bottom-0 start-0 m-3'>
+                <InfoButton src={Info} onClick={() => navigate("/description")} />
+            </div>
+        </div>
+    )
 }
-

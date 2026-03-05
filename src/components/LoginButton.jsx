@@ -2,6 +2,14 @@ export default function LoginButton({ content, onClick }) {
     return (
         <button
             onClick={onClick}
+            onMouseEnter={e => {
+                e.target.style.filter = 'brightness(1.2)'
+                e.target.style.transform = 'scale(1.05)'
+            }}
+            onMouseLeave={e => {
+                e.target.style.filter = 'brightness(1)'
+                e.target.style.transform = 'scale(1)'
+            }}
             style={{
                 background: 'linear-gradient(to right, #868686, #383838)',
                 border: '3.5px solid #000000',

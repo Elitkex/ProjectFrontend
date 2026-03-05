@@ -8,12 +8,21 @@ import Info from '../assets/info.png'
 import InfoButton from '../components/InfoButton'
 import TextBox from '../components/Textbox'
 import { useState } from 'react'
+import { belepes } from '../api'
 import RememberMe from '../components/Rememberme'
+import BackButton from '../components/BackButton'
+import Back from '../assets/back.png'
+import Popup from '../components/Popup'
 
 export default function LoginPage() {
     const navigate = useNavigate()
+    const [navigateTo, setNavigateTo] = useState("")
 
-    const [email, setEmail] = useState("")
+    const [popup, setPopup] = useState("")
+
+    const [email, setEmail] = useState(
+        localStorage.getItem('rememberMe') === 'true' ? localStorage.getItem('savedEmail') || "" : ""
+    )
     const [jelszo, setJelszo] = useState("")
     const [rememberMe, setRememberMe] = useState(
         localStorage.getItem('rememberMe') === 'true'
@@ -21,20 +30,15 @@ export default function LoginPage() {
 
     return (
         <div className='d-flex flex-column align-items-center vh-100'>
+            <Popup message={popup} onClose={() => {
+                setPopup("")
+                if (navigateTo) navigate(navigateTo)
+            }} />
             <div className="position-fixed top-0 start-0 w-100 h-100"
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
             {/* Vissza gomb bal fent */}
-            <div className='position-fixed top-0 start-0 m-3'>
-                <button onClick={() => navigate("/")} style={{
-                    background: 'none',
-                    border: 'none',
-                    color: 'white',
-                    fontSize: '1.8rem',
-                    cursor: 'pointer',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.5)'
-                }}>‹</button>
-            </div>
+            <BackButton src={Back} onClick={() => navigate(-1)} />
 
             {/* Info gomb jobb fent */}
             <div className='position-fixed bottom-0 start-0 m-3'>
@@ -47,14 +51,35 @@ export default function LoginPage() {
             </div>
 
             {/* Mezők + gomb középen */}
-            <div className='d-flex flex-column align-items-center justify-content-center gap-3 flex-grow-1'>
+            <div className='d-flex flex-column align-items-center justify-content-center gap-4 flex-grow-1'>
                 <TextBox title={"E-mail"} type={"email"} placeholder={"example@example.com"} value={email} setvalue={setEmail} />
                 <TextBox title={"Password"} type={"password"} placeholder={"******"} value={jelszo} setvalue={setJelszo} />
 
-                {/* Remember me */}
-                <RememberMe value={rememberMe} onChange={setRememberMe} />
 
-                <LoginButton content={"Log-in"} onClick={() => navigate("/home")} />
+
+                <div className='d-flex flex-column align-items-center gap-2 mt-2'>
+                    {/* Remember me */}
+                    <RememberMe value={rememberMe} onChange={setRememberMe} />
+
+                    <LoginButton content={"Log-in"} onClick={async () => {
+                        if (!email || !jelszo) {
+                            return setPopup("Hiányzó adatok!")
+                        }
+                        const res = await belepes(email, jelszo)
+                        setPopup(res.message)
+                        if (res.result) {
+                            if (rememberMe) {
+                                localStorage.setItem('savedEmail', email)
+                            } else {
+                                localStorage.removeItem('savedEmail')
+                                localStorage.removeItem('rememberMe')
+                            }
+                            setNavigateTo("/home")
+                            setPopup(res.message)
+                        }
+                    }} />
+                </div>
+
             </div>
         </div >
     )

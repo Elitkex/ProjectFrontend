@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage'
 import DeckPage from './pages/DeckPage'
 import CardSelectionPage from './pages/CardSelectionPage'
 import DescriptionPage from './pages/DescriptionPage'
-import SettingPage from './pages/SettingsPage'
+import SettingsPage from './pages/SettingsPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/deck" element={<DeckPage/>}/>
         <Route path="/cardselection" element={<CardSelectionPage/>}/>
         <Route path="/description" element={<DescriptionPage/>}/>
-        <Route path="/setting" element={<SettingPage/>}/>
+        <Route path="/settings" element={<SettingsPage/>}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>,

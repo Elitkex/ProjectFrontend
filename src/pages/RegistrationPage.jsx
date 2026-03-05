@@ -9,26 +9,37 @@ import InfoButton from '../components/InfoButton'
 import TextBox from '../components/Textbox'
 import { useState } from 'react'
 import { regisztracio } from '../api'
+import BackButton from '../components/BackButton'
+import Back from '../assets/back.png'
+import Popup from '../components/Popup'
 
 export default function RegistrationPage() {
-    const navigation = useNavigate()
+    const navigate = useNavigate()
+    const [navigateTo, setNavigateTo] = useState("")
+    
 
     const [email, setEmail] = useState("")
     const [felhasznalonev, setFelhasznalonev] = useState("")
     const [jelszo1, setjelszo1] = useState("")
     const [jelszo2, setjelszo2] = useState("")
+    const [popup, setPopup] = useState("")
 
     return (
         <div className='d-flex flex-column align-items-center vh-100'>
+            <Popup message={popup} onClose={() => {
+                setPopup("")
+                if (navigateTo) navigate(navigateTo)
+            }} />
+
             <div className="position-fixed top-0 start-0 w-100 h-100"
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
-            {/* Logó felül */}
+            <BackButton src={Back} onClick={() => navigate(-1)} />
+
             <div className='mt-4'>
                 <LogoKep src={Logo} alt={"logo"} width={25} />
             </div>
 
-            {/* Mezők + gomb középre tolva */}
             <div className='d-flex flex-column align-items-center justify-content-center gap-4 flex-grow-1'>
                 <div className='d-flex flex-row gap-3 mb-4'>
                     <div className='d-flex flex-column gap-3'>
@@ -43,48 +54,44 @@ export default function RegistrationPage() {
 
                 <SignupButton content={"Regisztráció"} onClick={async () => {
                     if (!email || !felhasznalonev || !jelszo1 || !jelszo2) {
-                        return alert("hianyos beviteli adat(ok)!")
+                        return setPopup("Hiányzó adatok!")
                     }
                     if (jelszo1 !== jelszo2) {
-                        return alert("A jelszavak nem egyeznek")
+                        return setPopup("A jelszavak nem egyeznek!")
                     }
-                    const res = await regisztracio(email, felhasznalonev, jelszo1);
-                    alert(res.message)
-                    console.log(res.message);
+                    const res = await regisztracio(email, felhasznalonev, jelszo1)
+                    setPopup(res.message)
                     if (res.result) {
-                        //navigalas a bejelentkezesebe
-                        navigation('/login')
+                        setNavigateTo("/login")
                     }
+                    setPopup(res.message)
                 }} />
-                
             </div>
+
             <Link to="/login" style={{
-                    color: 'white',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                    fontSize: '1.1rem',
-                    textShadow: '0 2px 6px rgba(0,0,0,0.8)',
-                    background: 'rgba(0,0,0,0.3)',
-                    padding: '6px 20px',
-                    borderRadius: '20px',
-                    marginBottom: '22px',
-                    transition: 'all 0.2s ease'
+                color: 'white',
+                textDecoration: 'none',
+                fontWeight: 'bold',
+                fontSize: '1.1rem',
+                textShadow: '0 2px 6px rgba(0,0,0,0.8)',
+                background: 'rgba(0,0,0,0.3)',
+                padding: '6px 20px',
+                borderRadius: '20px',
+                marginBottom: '22px',
+                transition: 'all 0.2s ease'
+            }}
+                onMouseEnter={e => {
+                    e.target.style.background = 'rgba(255,255,255,0.25)'
+                    e.target.style.transform = 'scale(1.05)'
                 }}
-                    onMouseEnter={e => {
-                        e.target.style.background = 'rgba(255,255,255,0.25)'
-                        e.target.style.transform = 'scale(1.05)'
-                    }}
-                    onMouseLeave={e => {
-                        e.target.style.background = 'rgba(0,0,0,0.3)'
-                        e.target.style.transform = 'scale(1)'
-                    }}
-                >
-                    Van fiókom
-                </Link>
+                onMouseLeave={e => {
+                    e.target.style.background = 'rgba(0,0,0,0.3)'
+                    e.target.style.transform = 'scale(1)'
+                }}
+            >
+                Van fiókom
+            </Link>
 
-
-
-            {/* Info gomb bal lent */}
             <div className='position-fixed bottom-0 start-0 m-3'>
                 <InfoButton src={Info} onClick={() => navigate("/description")} />
             </div>

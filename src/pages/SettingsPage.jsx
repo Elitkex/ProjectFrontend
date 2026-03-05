@@ -1,3 +1,3 @@
-export default function SettingPage(){
+export default function SettingsPage(){
     
 }

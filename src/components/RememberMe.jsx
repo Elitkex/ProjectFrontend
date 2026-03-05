@@ -11,12 +11,11 @@ export default function RememberMe({ value, onChange }) {
             background: value ? 'rgba(50, 200, 50, 0.5)' : 'rgba(200, 50, 50, 0.5)',
             border: 'none',
             borderRadius: '50px',
-            padding: '8px 24px',
+            padding: '3px 15px',
             color: 'white',
             fontWeight: 'bold',
             fontSize: '1rem',
             cursor: 'pointer',
-            boxShadow: value ? '0 4px 0 rgba(30, 130, 30, 0.6)' : '0 4px 0 rgba(130, 30, 30, 0.6)',
             userSelect: 'none'
         }}>
             Remember me
