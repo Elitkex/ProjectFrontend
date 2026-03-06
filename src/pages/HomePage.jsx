@@ -6,17 +6,26 @@ import Logo from '/src/assets/logo.png'
 import Info from '../assets/info.png'
 import InfoButton from '../components/InfoButton'
 import Popup from '../components/Popup'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { kijelentkezes } from '../api'
 import HomeButtons from '../components/HomeButtons'
 import BackButton from '../components/BackButton'
 import Back from '../assets/back.png'
+import { adataim } from '../api'
+import ProfileIcon from '../components/ProfileIcon'
 
 export default function HomePage() {
     const navigate = useNavigate()
     const [popup, setPopup] = useState("")
 
     const [navigateTo, setNavigateTo] = useState("")
+
+    const [felhasznalo, setFelhasznalo] = useState(null)
+    useEffect(() => {
+        adataim().then(res => {
+            if (res.result) setFelhasznalo(res.data)
+        })
+    }, [])
 
 
     return (
@@ -33,7 +42,7 @@ export default function HomePage() {
 
             {/* Logó felül */}
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
             </div>
 
             {/* Gombok középen */}
@@ -44,11 +53,12 @@ export default function HomePage() {
                     const res = await kijelentkezes()
                     if (res.result) {
                         localStorage.removeItem('bejelentkezve')
-                        setNavigateTo("/login-signup")
+                        setNavigateTo("/")
                     }
                     setPopup(res.message)
                 }} />
             </div>
+            <ProfileIcon felhasznalonev={felhasznalo?.felhasznalonev} onClick={() => navigate('/profile')} />
 
             {/* Info gomb bal lent */}
             <div className='position-fixed top-1 end-0 m-3'>

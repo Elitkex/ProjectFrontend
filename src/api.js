@@ -58,3 +58,44 @@ export async function getKartyak() {
     if (!res.ok) return { result: false, message: data.message }
     else return { result: true, data }
 }
+export async function ujFelhasznalonev(ujFelhasznalonev) {
+    const res = await fetch(`${BASE}/felhasznalonev`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ ujFelhasznalonev })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
+
+export async function ujEmail(ujEmail) {
+    const res = await fetch(`${BASE}/email`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ ujEmail })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
+
+export async function ujJelszo(ujJelszo) {
+    const res = await fetch(`${BASE}/jelszo`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ ujJelszo })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
+
+export async function fioktorles() {
+    const res = await fetch(`${BASE}/fioktorles`, {
+        method: 'DELETE',
+        credentials: 'include'
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}

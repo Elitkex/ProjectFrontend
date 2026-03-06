@@ -37,7 +37,7 @@ export default function RegistrationPage() {
             <BackButton src={Back} onClick={() => navigate(-1)} />
 
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
             </div>
 
             <div className='d-flex flex-column align-items-center justify-content-center gap-4 flex-grow-1'>

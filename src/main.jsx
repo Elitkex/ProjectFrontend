@@ -8,6 +8,7 @@ import DeckPage from './pages/DeckPage'
 import CardSelectionPage from './pages/CardSelectionPage'
 import DescriptionPage from './pages/DescriptionPage'
 import SettingsPage from './pages/SettingsPage'
+import ProfilePage from './pages/ProfilePage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
@@ -15,7 +16,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/login-signup" element={<FirstPage/>}/>
+        <Route path="/" element={<FirstPage/>}/>
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/signup" element={<RegistrationPage/>}/>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/cardselection" element={<CardSelectionPage/>}/>
         <Route path="/description" element={<DescriptionPage/>}/>
         <Route path="/settings" element={<SettingsPage/>}/>
+        <Route path="/profile" element={<ProfilePage/>}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>,

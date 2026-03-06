@@ -8,6 +8,7 @@ export default function TextBox({ title, placeholder, type, value, setvalue }) {
             padding: '20px 24px',
             width: '380px'
         }}>
+            <style>{`input::placeholder {color: rgba(180, 180, 180, 0.8);}`}</style>
             <label style={{
                 color: 'rgba(0,0,0,0.7)',
                 fontWeight: 'bold',
@@ -28,7 +29,8 @@ export default function TextBox({ title, placeholder, type, value, setvalue }) {
                     outline: 'none',
                     color: 'black',
                     width: '100%',
-                    fontSize: '1rem'
+                    fontSize: '1rem',
+                    marginTop: 5
                 }}
             />
         </div>

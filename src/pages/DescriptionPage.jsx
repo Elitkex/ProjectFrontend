@@ -6,9 +6,19 @@ import Logo from '/src/assets/logo.png'
 import DescriptionBox from '../components/DescriptionBox'
 import BackButton from '../components/BackButton'
 import Back from '../assets/back.png'
+import { useEffect, useState } from 'react'
+import ProfileIcon from '../components/ProfileIcon'
+import { adataim } from '../api'
 
 export default function DescriptionPage() {
     const navigate = useNavigate()
+
+    const [felhasznalo, setFelhasznalo] = useState(null)
+    useEffect(() => {
+        adataim().then(res => {
+            if (res.result) setFelhasznalo(res.data)
+        })
+    }, [])
 
     const szoveg = `turi dominik lolban gold kis geci amigy nem dolgozik semmit nem csinal semmit Matlag Máténak
     kell megcsinalni az egesz projectet de legalabb nem fog megbukni szoval nem tud mit csinalni mert ha o nem
@@ -25,12 +35,13 @@ export default function DescriptionPage() {
 
             {/* Logó felül */}
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/login-signup')} />
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
             </div>
 
             {/* Szöveg doboz */}
             <div className='d-flex flex-column align-items-center justify-content-center flex-grow-1 mb-5' style={{ maxWidth: '700px' }}>
                 <DescriptionBox szoveg={szoveg} />
+                <ProfileIcon felhasznalonev={felhasznalo?.felhasznalonev} onClick={() => navigate('/profile')} />
             </div>
         </div>
     )
