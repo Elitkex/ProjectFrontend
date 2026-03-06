@@ -35,7 +35,7 @@ export default function DescriptionPage() {
 
             {/* Logó felül */}
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
+                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/home')} />
             </div>
 
             {/* Szöveg doboz */}

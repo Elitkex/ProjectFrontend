@@ -40,7 +40,7 @@ export default function LoginPage() {
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
             {/* Vissza gomb bal fent */}
-            <BackButton src={Back} onClick={() => navigate(-1)} />
+            <BackButton src={Back} onClick={() => navigate("/")} />
 
             {/* Info gomb jobb fent */}
             <div className='position-fixed top-1 end-0 m-3'>
@@ -54,7 +54,7 @@ export default function LoginPage() {
 
             {/* Mezők + gomb középen */}
             <div className='d-flex flex-column align-items-center justify-content-center gap-4 flex-grow-1'>
-                <TextBox title={"E-mail"} type={"email"} placeholder={"example@example.com"} value={email} setvalue={setEmail} />
+                <TextBox title={"E-mail vagy Felhasználónév"} type={"email"} placeholder={"example@example.com / username"} value={email} setvalue={setEmail} />
                 <TextBox title={"Password"} type={"password"} placeholder={"******"} value={jelszo} setvalue={setJelszo} />
 
 

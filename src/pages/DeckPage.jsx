@@ -72,7 +72,17 @@ export default function DeckPage() {
                     <DeckGrid
                         key={i}
                         cards={cards}
-                        onCardClick={(slot) => navigate(`/cardselection?slot=${slot}&pakli=${i}&uid=${felhasznalo?.id}`)}
+                        onCardClick={(slot) => {
+                            if (paklik[i][slot] !== null) {
+                                // törli a kártyát
+                                const ujPaklik = paklik.map((p, pi) =>
+                                    pi === i ? p.map((c, j) => j === slot ? null : c) : p
+                                )
+                                setPaklik(ujPaklik)
+                            } else {
+                                navigate(`/cardselection?slot=${slot}&pakli=${i}&uid=${felhasznalo?.id}`)
+                            }
+                        }}
                         onDelete={() => kukaTorol(i)}
                     />
                 ))}

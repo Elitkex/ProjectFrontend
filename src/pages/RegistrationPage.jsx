@@ -34,7 +34,7 @@ export default function RegistrationPage() {
             <div className="position-fixed top-0 start-0 w-100 h-100"
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
-            <BackButton src={Back} onClick={() => navigate(-1)} />
+            <BackButton src={Back} onClick={() => navigate("/")} />
 
             <div className='d-flex justify-content-center mt-4'>
                 <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
