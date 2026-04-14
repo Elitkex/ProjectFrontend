@@ -7,19 +7,32 @@ import DeckBackground from '../assets/deckbackground.png'
 import TextBox from '../components/Textbox'
 import HomeButtons from '../components/HomeButtons'
 import Popup from '../components/Popup'
-import { useState } from 'react'
-import { ujFelhasznalonev, ujEmail, ujJelszo, fioktorles } from '../api'
+import { useEffect, useState } from 'react'
+import { ujFelhasznalonev, ujEmail, ujJelszo, fioktorles, adataim } from '../api'
+import DeletePopup from '../components/DeletePopup'
+import ProfileIcon from '../components/ProfileIcon'
 
 export default function SettingsPage() {
     const navigate = useNavigate()
     const [popup, setPopup] = useState("")
     const [navigateTo, setNavigateTo] = useState("")
 
+    
+    const [felhasznalo, setFelhasznalo] = useState(null)
+
     const [felhasznalonev, setFelhasznalonev] = useState("")
     const [email, setEmail] = useState("")
     const [regiJelszo, setRegiJelszo] = useState("")
     const [ujJelszo1, setUjJelszo1] = useState("")
     const [ujJelszo2, setUjJelszo2] = useState("")
+
+    const [deletePopup, setDeletePopup] = useState(false)
+
+    useEffect(() => {
+        adataim().then(res => {
+            if (res.result) setFelhasznalo(res.data)
+        })
+    }, [])
 
     return (
         <div className='d-flex flex-column align-items-center vh-100'>
@@ -44,15 +57,16 @@ export default function SettingsPage() {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '16px',
-                    minWidth: '420px'
+                    minWidth: 'min(420px, 90vw)'
                 }}>
+
 
                     {/* Edit Username */}
                     <div>
                         <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Username</div>
                         <div className='d-flex gap-2'>
                             <TextBox title={""} type={"text"} placeholder={"New Username:"} value={felhasznalonev} setvalue={setFelhasznalonev} />
-                            <HomeButtons content={"update"} onClick={async () => {
+                            <HomeButtons content={"Update"} onClick={async () => {
                                 const res = await ujFelhasznalonev(felhasznalonev)
                                 setPopup(res.message)
                             }} />
@@ -64,7 +78,7 @@ export default function SettingsPage() {
                         <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit E-Mail</div>
                         <div className='d-flex gap-2'>
                             <TextBox title={""} type={"email"} placeholder={"New E-Mail"} value={email} setvalue={setEmail} />
-                            <HomeButtons content={"update"} onClick={async () => {
+                            <HomeButtons content={"Update"} onClick={async () => {
                                 const res = await ujEmail(email)
                                 setPopup(res.message)
                             }} />
@@ -80,7 +94,7 @@ export default function SettingsPage() {
                         </div>
                         <div className='d-flex gap-2'>
                             <TextBox title={""} type={"password"} placeholder={"New Password again"} value={ujJelszo2} setvalue={setUjJelszo2} />
-                            <HomeButtons content={"update"} onClick={async () => {
+                            <HomeButtons content={"Update"} onClick={async () => {
                                 if (ujJelszo1 !== ujJelszo2) return setPopup("A jelszavak nem egyeznek!")
                                 const res = await ujJelszo(ujJelszo1)
                                 setPopup(res.message)
@@ -89,17 +103,22 @@ export default function SettingsPage() {
                     </div>
 
                     {/* Fiók törlése */}
-                    <div className='d-flex justify-content-center mt-2'>
-                        <HomeButtons content={"Fiók törlése"} color="red" onClick={async () => {
+                    <DeletePopup
+                        message={deletePopup ? "Biztosan törölni szeretnéd a fiókodat?" : ""}
+                        onConfirm={async () => {
+                            setDeletePopup(false)
                             const res = await fioktorles()
-                            if (res.result) {
-                                setNavigateTo("/")
-                            }
+                            if (res.result) setNavigateTo("/")
                             setPopup(res.message)
-                        }} />
-                    </div>
+                        }}
+                        onCancel={() => setDeletePopup(false)}
+                    />
+
+                    {/* Fiók törlése gomb*/}
+                    <HomeButtons content={"Fiók törlése"} color="red" onClick={() => setDeletePopup(true)} />
 
                 </div>
+                <ProfileIcon felhasznalonev={felhasznalo?.felhasznalonev} onClick={() => navigate('/profile')} />
             </div>
         </div>
     )

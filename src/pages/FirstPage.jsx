@@ -19,7 +19,7 @@ export default function FirstPage() {
 
             {/* Logó felül */}
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'}/>
+                <LogoKep src={Logo} alt={"logo"} width={'min(500px, 70vw)'} />
             </div>
 
             {/* Gombok középen */}

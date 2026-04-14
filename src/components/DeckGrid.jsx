@@ -4,8 +4,17 @@ import CardSlot from './CardSlot'
 
 export default function DeckGrid({ cards, onCardClick, onDelete }) {
     const teleKartyak = cards.filter(c => c !== null)
+
     const atlagElixir = teleKartyak.length > 0
         ? (teleKartyak.reduce((sum, c) => sum + c.elixir_cost, 0) / teleKartyak.length).toFixed(1)
+        : 0
+
+    const atlagDmg = teleKartyak.length > 0
+        ? (teleKartyak.reduce((sum, c) => sum + c.dmg, 0) / teleKartyak.length).toFixed(0)
+        : 0
+
+    const atlagHitSpeed = teleKartyak.length > 0
+        ? (teleKartyak.reduce((sum, c) => sum + c.hit_speed, 0) / teleKartyak.length).toFixed(1)
         : 0
 
     return (
@@ -14,9 +23,11 @@ export default function DeckGrid({ cards, onCardClick, onDelete }) {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '20px',
-            padding: '40px',
+            padding: 'min(40px, 1.5vw)',
             position: 'relative',
-            border: '3px solid #1a5a9a'
+            border: '3px solid #1a5a9a',
+            gridTemplateColumns: 'repeat(4, min(110px, 22vw))',
+            gap: 'min(12px, 2.5vw)',
         }}>
             <img src={Kuka} alt="kuka" onClick={onDelete} style={{
                 position: 'absolute',
@@ -33,31 +44,54 @@ export default function DeckGrid({ cards, onCardClick, onDelete }) {
 
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(4, 110px)',
-                gap: '12px',
-                marginTop: '10px'
+                gridTemplateColumns: 'repeat(4, min(110px, 22vw))',
+                gap: 'min(12px, 2vw)',
+                marginTop: '45px'
             }}>
                 {cards.map((card, i) => (
                     <CardSlot key={i} card={card} onClick={() => onCardClick(i)} />
                 ))}
             </div>
 
-            {/* Átlag elixír */}
+            {/* Statisztikák */}
             <div style={{
                 marginTop: '12px',
                 display: 'flex',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                gap: 'min(12px, 2.5vw)',
             }}>
                 <div style={{
                     background: 'rgba(0,0,0,0.4)',
                     borderRadius: '20px',
-                    padding: '5px 16px',
+                    padding: 'min(5px, 1vw) min(16px, 3vw)',
                     color: '#d070ff',
                     fontWeight: 'bold',
-                    fontSize: '0.9rem',
+                    fontSize: 'min(0.85rem, 3vw)',
                     border: '1px solid rgba(180,80,255,0.4)'
                 }}>
-                    Average Elixir cost: {atlagElixir} 💜
+                    ⚡ Avg Elixir: {atlagElixir}
+                </div>
+                <div style={{
+                    background: 'rgba(0,0,0,0.4)',
+                    borderRadius: '20px',
+                    padding: 'min(5px, 1vw) min(16px, 3vw)',
+                    color: '#ff7070',
+                    fontWeight: 'bold',
+                    fontSize: 'min(0.85rem, 3vw)',
+                    border: '1px solid rgba(255,80,80,0.4)'
+                }}>
+                    ⚔️ Avg DMG: {atlagDmg}
+                </div>
+                <div style={{
+                    background: 'rgba(0,0,0,0.4)',
+                    borderRadius: '20px',
+                    padding: 'min(5px, 1vw) min(16px, 3vw)',
+                    color: '#70d0ff',
+                    fontWeight: 'bold',
+                    fontSize: 'min(0.85rem, 3vw)',
+                    border: '1px solid rgba(80,180,255,0.4)'
+                }}>
+                    🕐 Avg Hit Speed: {atlagHitSpeed}s
                 </div>
             </div>
         </div>

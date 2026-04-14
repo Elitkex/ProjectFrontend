@@ -30,7 +30,7 @@ export default function HomeButtons({ content, onClick, color = 'tan' }) {
                 fontWeight: 'bold',
                 fontSize: '2.1rem',
                 padding: '14px 0',
-                width: '320px',
+                width: 'min(280px, 80vw)',
                 height: '90px',
                 cursor: 'pointer',
                 letterSpacing: '1px',

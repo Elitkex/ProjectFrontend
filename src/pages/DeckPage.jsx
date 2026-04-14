@@ -28,7 +28,6 @@ export default function DeckPage() {
         const saved = localStorage.getItem(`paklik_${felhasznalo.id}`)
         let betoltottPaklik = saved ? JSON.parse(saved) : [Array(8).fill(null)]
 
-        // Ha van pending kártya, alkalmazzuk rögtön betöltés után
         if (pendingCard.current) {
             const { kartya, slot, pakliIndex } = pendingCard.current
             betoltottPaklik = betoltottPaklik.map((p, i) =>
@@ -61,20 +60,28 @@ export default function DeckPage() {
     }
 
     return (
-        <div className='d-flex flex-column align-items-center vh-100'>
-            <div className="position-fixed top-0 start-0 w-100 h-100"
-                style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
+        <div className='d-flex flex-column align-items-center min-vh-100'
+            style={{ overflowY: 'auto' }}>
+            <div
+                className="position-fixed top-0 start-0 w-100 h-100"
+                style={{
+                    backgroundImage: `url(${Background})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    zIndex: -1
+                }}
+            />
 
             <BackButton src={Back} onClick={() => navigate("/home")} />
 
-            <div className='d-flex flex-column align-items-center justify-content-center flex-grow-1 gap-4'>
+            <div className='d-flex flex-column align-items-center justify-content-center flex-grow-1 gap-3'
+                style={{ padding: 'min(20px, 4vw)', width: '100%' }}>
                 {paklik.map((cards, i) => (
                     <DeckGrid
                         key={i}
                         cards={cards}
                         onCardClick={(slot) => {
                             if (paklik[i][slot] !== null) {
-                                // törli a kártyát
                                 const ujPaklik = paklik.map((p, pi) =>
                                     pi === i ? p.map((c, j) => j === slot ? null : c) : p
                                 )

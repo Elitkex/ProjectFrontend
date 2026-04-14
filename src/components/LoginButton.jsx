@@ -18,7 +18,7 @@ export default function LoginButton({ content, onClick }) {
                 fontWeight: 'bold',
                 fontSize: '2.1rem',
                 padding: '14px 0',
-                width: '320px',
+                width: 'min(320px, 80vw)',
                 height: '90px',
                 cursor: 'pointer',
                 letterSpacing: '1px',

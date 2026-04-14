@@ -20,26 +20,25 @@ export default function DescriptionPage() {
         })
     }, [])
 
-    const szoveg = `turi dominik lolban gold kis geci amigy nem dolgozik semmit nem csinal semmit Matlag Máténak
-    kell megcsinalni az egesz projectet de legalabb nem fog megbukni szoval nem tud mit csinalni mert ha o nem
-    akkor mas se fogja helyette megirni es eloadni ezert muszaj egesznap csak neki dolgoznia hogy dominik tudjon
-    aludni reggel 8tol 11ig utana meg 1 ora tiktok es mehet is dolgara haza majd enni lolozni es aludni tovabb`
+    const szoveg = 
+    `Ez egy Clash Royale-ihlette webalkalmazás, ahol regisztrált felhasználók egyedi paklikat építhetnek a játék kártyáiból.
+    Bejelentkezés után böngészheted az összes elérhető kártyát, összerakhatod a saját 8 kártyás paklidat,
+    és nyomon követheted a pakli statisztikáit mint az átlagos elixír költség, sebzés és támadási sebesség.
+    Fiókodban bármikor módosíthatod adataidat, vagy törölheted a profilodat.`
 
     return (
         <div className='d-flex flex-column align-items-center vh-100'>
             <div className="position-fixed top-0 start-0 w-100 h-100"
                 style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', zIndex: -1 }} />
 
-            {/* Vissza gomb bal fent */}
             <BackButton src={Back} onClick={() => navigate(-1)} />
 
-            {/* Logó felül */}
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/home')} />
+                <LogoKep src={Logo} alt={"logo"} width={'min(500px, 70vw)'} onClick={() => navigate('/home')} />
             </div>
 
-            {/* Szöveg doboz */}
-            <div className='d-flex flex-column align-items-center justify-content-center flex-grow-1 mb-5' style={{ maxWidth: '700px' }}>
+            <div className='d-flex flex-column align-items-center justify-content-center flex-grow-1 mb-5'
+                style={{ width: 'min(1100px, 90vw)', padding: '0 16px' }}>
                 <DescriptionBox szoveg={szoveg} />
                 <ProfileIcon felhasznalonev={felhasznalo?.felhasznalonev} onClick={() => navigate('/profile')} />
             </div>

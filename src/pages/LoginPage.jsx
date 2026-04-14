@@ -49,7 +49,7 @@ export default function LoginPage() {
 
             {/* Logó felül */}
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
+                <LogoKep src={Logo} alt={"logo"} width={'min(500px, 70vw)'} onClick={() => navigate('/')} />
             </div>
 
             {/* Mezők + gomb középen */}

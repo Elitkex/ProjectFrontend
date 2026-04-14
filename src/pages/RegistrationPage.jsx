@@ -37,7 +37,7 @@ export default function RegistrationPage() {
             <BackButton src={Back} onClick={() => navigate("/")} />
 
             <div className='d-flex justify-content-center mt-4'>
-                <LogoKep src={Logo} alt={"logo"} width={'500px'} onClick={() => navigate('/')} />
+                <LogoKep src={Logo} alt={"logo"} width={'min(500px, 70vw)'} onClick={() => navigate('/')} />
             </div>
 
             <div className='d-flex flex-column align-items-center justify-content-center gap-4 flex-grow-1'>
@@ -45,8 +45,7 @@ export default function RegistrationPage() {
                     <div className='d-flex flex-column gap-3'>
                         <TextBox title={"Felhasználónév"} type={"text"} placeholder={"username"} value={felhasznalonev} setvalue={setFelhasznalonev} />
                         <TextBox title={"Jelszó"} type={"password"} placeholder={"******"} value={jelszo1} setvalue={setjelszo1} />
-                    </div>
-                    <div className='d-flex flex-column gap-3'>
+
                         <TextBox title={"E-mail"} type={"email"} placeholder={"example@example.com"} value={email} setvalue={setEmail} />
                         <TextBox title={"Jelszó megerősítés"} type={"password"} placeholder={"******"} value={jelszo2} setvalue={setjelszo2} />
                     </div>

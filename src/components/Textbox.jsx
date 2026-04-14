@@ -6,7 +6,7 @@ export default function TextBox({ title, placeholder, type, value, setvalue }) {
             border: '2px solid rgba(255, 255, 255, 0.6)',
             borderRadius: '20px',
             padding: '20px 24px',
-            width: '380px'
+            width: 'min(380px, 85vw)'
         }}>
             <style>{`input::placeholder {color: rgba(180, 180, 180, 0.8);}`}</style>
             <label style={{

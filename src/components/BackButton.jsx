@@ -15,8 +15,8 @@ export default function BackButton({ onClick, src }) {
                     e.target.style.transform = 'scale(1)'
                 }}
                 style={{
-                    width: '80px',
-                    height: '80px',
+                    width: 'min(80px, 10vw)',
+                    height: 'min(80px, 10vw)',
                     cursor: 'pointer'
                 }}
             />

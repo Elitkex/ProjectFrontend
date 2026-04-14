@@ -63,7 +63,7 @@ export default function CardSelectionPage() {
                     overflowY: 'auto',
                     padding: '20px',
                     width: '100%',
-                    maxWidth: '700px',
+                    maxWidth: 'min(700px, 95vw)',
                     flexGrow: 1
                 }}>
                     <div style={{

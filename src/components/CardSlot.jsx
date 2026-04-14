@@ -3,8 +3,8 @@ import Plus from '../assets/plus.png'
 export default function CardSlot({ card, onClick }) {
     return (
         <div onClick={onClick} style={{
-            width: '110px',
-            height: '150px',
+            width: 'min(110px, 22vw)',
+            height: 'min(150px, 30vw)',
             background: card ? 'transparent' : 'rgba(255,255,255,0.75)',
             borderRadius: '12px',
             border: card ? 'none' : '3px dashed rgba(0,0,0,0.2)',

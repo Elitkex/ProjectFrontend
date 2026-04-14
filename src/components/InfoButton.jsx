@@ -11,9 +11,8 @@ export default function InfoGomb({ src, onClick }) {
                 e.target.style.transform = 'scale(1)'
             }}
             style={{
-                
-                width: '67.5px',
-                height: '67.5px',
+                width: 'min(67.5px, 10vw)',
+                height: 'min(67.5px, 10vw)',
                 cursor: 'pointer'
             }}/>
         </div>
