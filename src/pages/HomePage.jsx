@@ -61,7 +61,7 @@ export default function HomePage() {
             <ProfileIcon felhasznalonev={felhasznalo?.felhasznalonev} onClick={() => navigate('/profile')} />
 
             {/* Info gomb bal lent */}
-            <div className='position-fixed top-1 end-0 m-3'>
+            <div className='position-fixed bottom-1 end-0 m-3'>
                 <InfoButton src={Info} onClick={() => navigate("/description")} />
             </div>
         </div>

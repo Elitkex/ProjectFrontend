@@ -17,7 +17,7 @@ export default function SettingsPage() {
     const [popup, setPopup] = useState("")
     const [navigateTo, setNavigateTo] = useState("")
 
-    
+
     const [felhasznalo, setFelhasznalo] = useState(null)
 
     const [felhasznalonev, setFelhasznalonev] = useState("")
@@ -46,79 +46,94 @@ export default function SettingsPage() {
 
             <BackButton src={Back} onClick={() => navigate(-1)} />
 
-            <div className='d-flex flex-column align-items-center justify-content-center flex-grow-1'>
+            <div >
                 <div style={{
                     backgroundImage: `url(${DeckBackground})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     borderRadius: '20px',
-                    padding: '30px',
+                    padding: 'min(30px, 5vw)',
                     border: '3px solid #1a5a9a',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '16px',
-                    minWidth: 'min(420px, 90vw)'
+                    marginTop: 10
                 }}>
-
-
-                    {/* Edit Username */}
                     <div>
-                        <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Username</div>
-                        <div className='d-flex gap-2'>
-                            <TextBox title={""} type={"text"} placeholder={"New Username:"} value={felhasznalonev} setvalue={setFelhasznalonev} />
-                            <HomeButtons content={"Update"} onClick={async () => {
-                                const res = await ujFelhasznalonev(felhasznalonev)
-                                setPopup(res.message)
-                            }} />
+                        <div className=''>
+
+                            {/* Edit Username */}
+                            <div className='col-12 col-lg-6'>
+                                <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Username</div>
+                                <TextBox title={""} type={"text"} placeholder={"New Username:"} value={felhasznalonev} setvalue={setFelhasznalonev} />
+
+
+                            </div>
+
+                            <div className='col-12 col-lg-6 mt-1'>
+                                <HomeButtons content={"Update"} onClick={async () => {
+                                    const res = await ujFelhasznalonev(felhasznalonev)
+                                    setPopup(res.message)
+                                }} />
+                            </div>
+
+                            {/* Edit E-Mail */}
+                            <div className='col-12 col-lg-6'>
+                                <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit E-Mail</div>
+                                <TextBox title={""} type={"email"} placeholder={"New E-Mail"} value={email} setvalue={setEmail} />
+                            </div>
+
+                            <div className='col-12 col-lg-6 mt-1'>
+                                <HomeButtons content={"Update"} onClick={async () => {
+                                    const res = await ujEmail(email)
+                                    setPopup(res.message)
+                                }} />
+                            </div>
+
+                            {/* Edit Password */}
+                            <div className='col-12 col-lg-6'>
+                                <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Password</div>
+                                <TextBox title={""} type={"password"} placeholder={"Old password"} value={regiJelszo} setvalue={setRegiJelszo} />
+                            </div>
+
+                            <div className='col-12 col-lg-6 mt-2'>
+                                <TextBox title={""} type={"password"} placeholder={"New password"} value={ujJelszo1} setvalue={setUjJelszo1} />
+                            </div>
+
+                            <div className='col-12 col-lg-6 mt-2'>
+                                <TextBox title={""} type={"password"} placeholder={"New Password again"} value={ujJelszo2} setvalue={setUjJelszo2} />
+                            </div>
+                            <div className='col-12 col-lg-6 mt-1'>
+                                <HomeButtons content={"Update"} onClick={async () => {
+                                    if (ujJelszo1 !== ujJelszo2) return setPopup("A jelszavak nem egyeznek!")
+                                    const res = await ujJelszo(ujJelszo1)
+                                    setPopup(res.message)
+                                }} />
+                            </div>
+
+                            {/* Fiók törlése */}
+                            <DeletePopup
+                                message={deletePopup ? "Biztosan törölni szeretnéd a fiókodat?" : ""}
+                                onConfirm={async () => {
+                                    setDeletePopup(false)
+                                    const res = await fioktorles()
+                                    if (res.result) setNavigateTo("/")
+                                    setPopup(res.message)
+                                }}
+                                onCancel={() => setDeletePopup(false)}
+                            />
+                            {/* Fiók törlése gomb*/}
+                            <div className='col-12 mt-1'>
+                                <HomeButtons content={"Fiók törlése"} color="red" onClick={() => setDeletePopup(true)} />
+                            </div>
                         </div>
                     </div>
 
-                    {/* Edit E-Mail */}
-                    <div>
-                        <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit E-Mail</div>
-                        <div className='d-flex gap-2'>
-                            <TextBox title={""} type={"email"} placeholder={"New E-Mail"} value={email} setvalue={setEmail} />
-                            <HomeButtons content={"Update"} onClick={async () => {
-                                const res = await ujEmail(email)
-                                setPopup(res.message)
-                            }} />
-                        </div>
-                    </div>
 
-                    {/* Edit Password */}
-                    <div>
-                        <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Password</div>
-                        <div className='d-flex gap-2 mb-2'>
-                            <TextBox title={""} type={"password"} placeholder={"Old password"} value={regiJelszo} setvalue={setRegiJelszo} />
-                            <TextBox title={""} type={"password"} placeholder={"New password"} value={ujJelszo1} setvalue={setUjJelszo1} />
-                        </div>
-                        <div className='d-flex gap-2'>
-                            <TextBox title={""} type={"password"} placeholder={"New Password again"} value={ujJelszo2} setvalue={setUjJelszo2} />
-                            <HomeButtons content={"Update"} onClick={async () => {
-                                if (ujJelszo1 !== ujJelszo2) return setPopup("A jelszavak nem egyeznek!")
-                                const res = await ujJelszo(ujJelszo1)
-                                setPopup(res.message)
-                            }} />
-                        </div>
-                    </div>
 
-                    {/* Fiók törlése */}
-                    <DeletePopup
-                        message={deletePopup ? "Biztosan törölni szeretnéd a fiókodat?" : ""}
-                        onConfirm={async () => {
-                            setDeletePopup(false)
-                            const res = await fioktorles()
-                            if (res.result) setNavigateTo("/")
-                            setPopup(res.message)
-                        }}
-                        onCancel={() => setDeletePopup(false)}
-                    />
 
-                    {/* Fiók törlése gomb*/}
-                    <HomeButtons content={"Fiók törlése"} color="red" onClick={() => setDeletePopup(true)} />
-
-                </div>
-                <ProfileIcon felhasznalonev={felhasznalo?.felhasznalonev} onClick={() => navigate('/profile')} />
+                </div >
+               
             </div>
         </div>
     )
