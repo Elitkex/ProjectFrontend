@@ -1,4 +1,3 @@
-// /src/components/Popup.jsx
 export default function Popup({ message, onClose }) {
     if (!message) return null
 

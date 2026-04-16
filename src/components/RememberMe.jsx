@@ -1,4 +1,3 @@
-// /src/components/RememberMe.jsx
 export default function RememberMe({ value, onChange }) {
     const handleClick = () => {
         const newValue = !value

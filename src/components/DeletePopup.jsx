@@ -1,4 +1,3 @@
-// /src/components/ConfirmPopup.jsx
 export default function DeletePopup({ message, onConfirm, onCancel }) {
     if (!message) return null
 
