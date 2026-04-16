@@ -10,15 +10,11 @@ import Popup from '../components/Popup'
 import { useEffect, useState } from 'react'
 import { ujFelhasznalonev, ujEmail, ujJelszo, fioktorles, adataim } from '../api'
 import DeletePopup from '../components/DeletePopup'
-import ProfileIcon from '../components/ProfileIcon'
 
 export default function SettingsPage() {
     const navigate = useNavigate()
     const [popup, setPopup] = useState("")
     const [navigateTo, setNavigateTo] = useState("")
-
-
-    const [felhasznalo, setFelhasznalo] = useState(null)
 
     const [felhasznalonev, setFelhasznalonev] = useState("")
     const [email, setEmail] = useState("")
@@ -60,50 +56,50 @@ export default function SettingsPage() {
                     marginTop: 10
                 }}>
                     <div>
-                        <div className=''>
+                        
 
                             {/* Edit Username */}
-                            <div className='col-12 col-lg-6'>
-                                <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Username</div>
+
+                            <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Username</div>
+                            <div className="d-flex flex-column flex-lg-row align-items-center gap-2 mb-2">
+
                                 <TextBox title={""} type={"text"} placeholder={"New Username:"} value={felhasznalonev} setvalue={setFelhasznalonev} />
 
-
-                            </div>
-
-                            <div className='col-12 col-lg-6 mt-1'>
                                 <HomeButtons content={"Update"} onClick={async () => {
                                     const res = await ujFelhasznalonev(felhasznalonev)
                                     setPopup(res.message)
-                                }} />
+                                }}
+                                />
                             </div>
 
                             {/* Edit E-Mail */}
-                            <div className='col-12 col-lg-6'>
-                                <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit E-Mail</div>
-                                <TextBox title={""} type={"email"} placeholder={"New E-Mail"} value={email} setvalue={setEmail} />
-                            </div>
+                            <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit E-Mail</div>
+                            <div className='d-flex flex-column flex-lg-row align-items-center gap-2 mb-2'>
 
-                            <div className='col-12 col-lg-6 mt-1'>
+                                <TextBox title={""} type={"email"} placeholder={"New E-Mail"} value={email} setvalue={setEmail} />
+
                                 <HomeButtons content={"Update"} onClick={async () => {
                                     const res = await ujEmail(email)
                                     setPopup(res.message)
                                 }} />
                             </div>
 
-                            {/* Edit Password */}
-                            <div className='col-12 col-lg-6'>
-                                <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Password</div>
+
+                            <div style={{ color: 'white', fontWeight: 'bold', marginBottom: '6px' }}>Edit Password</div>
+                            <div className='d-flex flex-column flex-lg-row align-items-center gap-2 mb-2'>
                                 <TextBox title={""} type={"password"} placeholder={"Old password"} value={regiJelszo} setvalue={setRegiJelszo} />
                             </div>
+
+
+                            {/* Edit Password */}
 
                             <div className='col-12 col-lg-6 mt-2'>
                                 <TextBox title={""} type={"password"} placeholder={"New password"} value={ujJelszo1} setvalue={setUjJelszo1} />
                             </div>
 
-                            <div className='col-12 col-lg-6 mt-2'>
+                            <div className='d-flex flex-column flex-lg-row align-items-center gap-2 mb-2 mt-1'>
                                 <TextBox title={""} type={"password"} placeholder={"New Password again"} value={ujJelszo2} setvalue={setUjJelszo2} />
-                            </div>
-                            <div className='col-12 col-lg-6 mt-1'>
+
                                 <HomeButtons content={"Update"} onClick={async () => {
                                     if (ujJelszo1 !== ujJelszo2) return setPopup("A jelszavak nem egyeznek!")
                                     const res = await ujJelszo(ujJelszo1)
@@ -123,17 +119,13 @@ export default function SettingsPage() {
                                 onCancel={() => setDeletePopup(false)}
                             />
                             {/* Fiók törlése gomb*/}
-                            <div className='col-12 mt-1'>
+                            <div className='col-12 mt-1 align-items-center text-center'>
                                 <HomeButtons content={"Fiók törlése"} color="red" onClick={() => setDeletePopup(true)} />
                             </div>
-                        </div>
+                        
                     </div>
-
-
-
-
                 </div >
-               
+
             </div>
         </div>
     )

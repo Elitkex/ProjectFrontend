@@ -1,7 +1,7 @@
 // /src/components/BackButton.jsx
 export default function BackButton({ onClick, src }) {
     return (
-        <div className='position-fixed top-0 start-0 m-3'>
+        <div className='position-fixed top-0 start-0 m-3 z-3'>
             <img
                 src={src}
                 alt="back"
