@@ -50,23 +50,23 @@ export async function getDecks() {
     else return { result: true, data }
 }
 
-export async function createDeck(kartya_ids) {
+export async function createDeck(kartya_id) {
     const res = await fetch(`${BASE}/decks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ kartya_ids })
+        body: JSON.stringify({ kartya_id })
     })
     const data = await res.json()
     return { result: res.ok, message: data.message, pakli_id: data.pakli_id }
 }
 
-export async function updateDeck(id, kartya_ids) {
+export async function updateDeck(id, kartya_id) {
     const res = await fetch(`${BASE}/decks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ kartya_ids })
+        body: JSON.stringify({ kartya_id })
     })
     const data = await res.json()
     return { result: res.ok, message: data.message }
