@@ -40,7 +40,7 @@ export async function adataim() {
     if (!res.ok) return { result: false, message: data.message }
     else return { result: true, data }
 }
-
+//-------------------------------------------
 export async function getDecks() {
     const res = await fetch(`${BASE}/decks`, {
         credentials: 'include'
@@ -49,6 +49,39 @@ export async function getDecks() {
     if (!res.ok) return { result: false, message: data.message }
     else return { result: true, data }
 }
+
+export async function createDeck(kartya_ids) {
+    const res = await fetch(`${BASE}/decks`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ kartya_ids })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message, pakli_id: data.pakli_id }
+}
+
+export async function updateDeck(id, kartya_ids) {
+    const res = await fetch(`${BASE}/decks/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ kartya_ids })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
+
+export async function deleteDeck(id) {
+    const res = await fetch(`${BASE}/decks/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
+
+//------------------------------------------------
 
 export async function getKartyak() {
     const res = await fetch(`${BASE}/kartyak`, {
