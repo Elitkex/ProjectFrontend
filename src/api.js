@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:3000'
+const BASE = 'https://nodejs217.dszcbaross.edu.hu'
 
 export async function regisztracio(email, felhasznalonev, jelszo) {
     const res = await fetch(`${BASE}/regisztracio`, {
