@@ -49,6 +49,27 @@ export async function getDecks() {
     if (!res.ok) return { result: false, message: data.message }
     else return { result: true, data }
 }
+export async function createDeckPartial(kartya_ids) {
+    const res = await fetch(`${BASE}/decks/partial`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ kartya_ids })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message, pakli_id: data.pakli_id }
+}
+
+export async function updateDeckPartial(id, kartya_ids) {
+    const res = await fetch(`${BASE}/decks/partial/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ kartya_ids })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
 
 export async function getKartyak() {
     const res = await fetch(`${BASE}/kartyak`, {
@@ -86,6 +107,15 @@ export async function ujJelszo(ujJelszo) {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ ujJelszo })
+    })
+    const data = await res.json()
+    return { result: res.ok, message: data.message }
+}
+
+export async function deleteDeck(id) {
+    const res = await fetch(`${BASE}/decks/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
     })
     const data = await res.json()
     return { result: res.ok, message: data.message }

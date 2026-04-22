@@ -6,36 +6,39 @@ import BackButton from '../components/BackButton'
 import Back from '../assets/back.png'
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { getKartyak } from '../api'
+import { getKartyak, getDecks } from '../api'
 import Popup from '../components/Popup'
-
 
 export default function CardSelectionPage() {
     const navigate = useNavigate()
     const [kartyak, setKartyak] = useState([])
     const [loading, setLoading] = useState(true)
     const [popup, setPopup] = useState("")
+    const [meglevoKartyaIds, setMeglevoKartyaIds] = useState([])
 
     const [searchParams] = useSearchParams()
     const slot = searchParams.get('slot')
     const pakliIndex = searchParams.get('pakli')
 
-    const uid = searchParams.get('uid')
-    const storageKey = `paklik_${uid}`
-
     useEffect(() => {
-        getKartyak().then(res => {
-            if (res.result) setKartyak(res.data)
+        Promise.all([
+            getKartyak(),
+            getDecks()
+        ]).then(([kartyakRes, decksRes]) => {
+            if (kartyakRes.result) setKartyak(kartyakRes.data)
+            if (decksRes.result) {
+                const ids = decksRes.data
+                    .flatMap(deck => deck.kartyak)
+                    .map(k => k?.id)
+                    .filter(Boolean)
+                setMeglevoKartyaIds(ids)
+            }
             setLoading(false)
         })
     }, [])
 
     const handleCardClick = (kartya) => {
-        const saved = localStorage.getItem(`paklik_${uid}`)
-        const paklik = saved ? JSON.parse(saved) : []
-        const aktualisPakli = paklik[Number(pakliIndex)] ?? []
-        const marBenne = aktualisPakli.some(k => k?.id === kartya.id)
-        if (marBenne) {
+        if (meglevoKartyaIds.includes(kartya.id)) {
             return setPopup("Ez a kártya már benne van a pakliban!")
         }
         navigate('/deck', { state: { kartya, slot, pakliIndex } })
@@ -72,10 +75,7 @@ export default function CardSelectionPage() {
                         gap: '8px',
                     }}>
                         {kartyak.map(kartya => {
-                            const saved = localStorage.getItem(`paklik_${uid}`)
-                            const paklik = saved ? JSON.parse(saved) : []
-                            const aktualisPakli = paklik[Number(pakliIndex)] ?? []
-                            const marBenne = aktualisPakli.some(k => k?.id === kartya.id)
+                            const marBenne = meglevoKartyaIds.includes(kartya.id)
                             return (
                                 <div key={kartya.id}
                                     onClick={() => handleCardClick(kartya)}
