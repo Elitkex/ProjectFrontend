@@ -6,7 +6,8 @@
 
 ## Készítette
 
-- Elitkex
+- Matlag Máté
+- Túri Dominik
 - [GitHub repo](https://github.com/Elitkex/ProjectFrontend)
 
 ---
