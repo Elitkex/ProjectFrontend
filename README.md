@@ -18,6 +18,11 @@ Clash Royale-ihlette webalkalmazás frontendje, ahol a felhasználók paklikat �
 - Beállítások – felhasználónév, email, jelszó módosítása, fiók törlése
 - Reszponzív design – mobil és asztali nézeten is működik
 
+## Design
+![Design](https://snipboard.io/yCO5Rq.jpg)
+>[Figma terv](https://www.figma.com/design/TWrB8nWr6qvdZxVWZrbZOJ/project?node-id=0-1&p=f&t=fHwxZSVW0GAarpYz-0)
+
+
 ## Oldalak
 
 | Útvonal | Leírás |
