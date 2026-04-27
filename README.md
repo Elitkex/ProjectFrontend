@@ -99,39 +99,57 @@ ProjectFrontend/
 
 1. #### `/` – Főoldal
 
-   Főoldal: Sign-up és Log-in gombok, info gomb a leíráshoz, logóra kattintva visszalép.
+   Főoldal: Sign-up és Log-in gombok, info gomb a leíráshoz.
+   
+   ![](https://snipboard.io/27hbHG.jpg)
 
-2. #### `/signup` – Regisztráció
+3. #### `/signup` – Regisztráció
 
    Regisztrációs oldal: felhasználónév, email, jelszó és jelszó megerősítés megadása. Sikeres regisztráció után átirányít a bejelentkezési oldalra.
 
-3. #### `/login` – Bejelentkezés
+   ![](https://snipboard.io/HJ7TxK.jpg)
+
+5. #### `/login` – Bejelentkezés
 
    Bejelentkezési oldal: email és jelszó megadása, Remember me funkció az adatok mentéséhez.
 
-4. #### `/home` – Főmenü
+   ![](https://snipboard.io/y0r5fj.jpg)
+
+7. #### `/home` – Főmenü
 
    Főmenü: Deck Builder, Edit Profile és Log-out gombok. Jobb alsó sarokban a bejelentkezett felhasználó neve látható.
 
-5. #### `/deck` – Pakli építő
+   ![](https://snipboard.io/zfRvyl.jpg)
+
+9. #### `/deck` – Pakli építő
 
    Pakli építő: max 2 pakli létrehozása, paklinként 8 kártyahely. Kártyára kattintva megnyílik a kártya választó. Statisztikák: átlagos elixír, sebzés, támadási sebesség.
+   
+   ![]()
 
-6. #### `/cardselection` – Kártya választó
+11. #### `/cardselection` – Kártya választó
 
    Kártya választó: az összes Clash Royale kártya rácsban megjelenítve képpel, névvel és elixír költséggel. A már pakliban lévő kártyák szürkítve jelennek meg.
+   
+   ![]()
 
-7. #### `/profile` – Profil
+11. #### `/profile` – Profil
 
    Profil oldal: felhasználónév, email és ID megtekintése. Edit Profile gombbal átnavigál a beállításokra.
 
-8. #### `/settings` – Beállítások
+   ![]()
+
+11. #### `/settings` – Beállítások
 
    Beállítások: felhasználónév, email és jelszó módosítása, fiók törlése megerősítő popuppal.
 
-9. #### `/description` – Leírás
+   ![]()
+
+11. #### `/description` – Leírás
 
    Az alkalmazás leírása.
+
+   ![]()
 
 ---
 
