@@ -1,4 +1,4 @@
-<img width="1919" height="952" alt="image" src="https://github.com/user-attachments/assets/0245675e-3a12-4d46-8d9c-aec084fa1298" /><img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/ad6f63c0-2831-45b8-ae69-106196f9ef89" /><img width="1919" height="954" alt="image" src="https://github.com/user-attachments/assets/d44c4ddb-8209-4c3a-aeff-9eda176e8f9e" /><img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/9e31de2c-b720-4407-8b12-c4e1289db55f" /># Clash Royale Pakli Építő – Frontend
+# Clash Royale Pakli Építő – Frontend
 
 > Clash Royale-ihlette webalkalmazás, ahol regisztrált felhasználók egyedi paklikat építhetnek a játék kártyáiból, kezelhetik fiókjukat és böngészhetik a kártyákat.
 
