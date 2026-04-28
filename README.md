@@ -6,27 +6,21 @@
 
 ## Készítette
 
-- Matlag Máté
-- Túri Dominik
-- [GitHub repo](https://github.com/Elitkex/ProjectFrontend)
+- [Matlag Máté](https://github.com/Elitkex)
+- [Túri Dominik](https://github.com/DomiNikeasd)
 
 ---
 
 ### Fejlesztési környezet
 
-- **React** + **Vite**
+- **React** + **Vite** + *JS*
 - **React Router DOM**
 - **Bootstrap**
 
-## Backend
-
-A backend Node.js alapú, Express keretrendszerrel és MySQL adatbázissal működik. Feladata kommunikációs hidat létesíteni a frontend és az adatbázis között.
-
-- [GitHub repo](https://github.com/Elitkex/ProjectBackend)
 
 ## Frontend
 
-A frontend React alapú SPA (Single Page Application). Feladata kommunikációs hidat létesíteni a felhasználó és a backend között.
+A frontend alkalmazás React keretrendszerrel készült. Feladata kommunikációs hidat létesíteni a felhasználó és a backend között.
 
 ### Telepítés és futtatás
 
@@ -41,15 +35,6 @@ Az alkalmazás alapértelmezetten a `http://localhost:5173` címen fut.
 
 ---
 
-### Környezeti változók
-
-Hozz létre egy `.env` fájlt a gyökérkönyvtárban:
-
-```
-VITE_API_URL=http://localhost:3000
-```
-
----
 
 ### Mappa struktúra
 
@@ -92,6 +77,13 @@ ProjectFrontend/
 ├── package.json
 └── vite.config.js
 ```
+
+### Design
+A fejlesztést megelőzte a tervezés, amit a figma tervezői eszközzel oldottunk meg. A figmában elkészült prototipus itt tekinthető meg:
+
+![](https://snipboard.io/Cv1OGX.jpg)
+
+[Figma link](https://www.figma.com/design/TWrB8nWr6qvdZxVWZrbZOJ/project?node-id=0-1&p=f)
 
 ---
 
@@ -151,9 +143,10 @@ ProjectFrontend/
 
    ![](https://snipboard.io/5dwSq8.jpg)
 
+
 ---
 
-### Szerepkörök
+### Elérhető funkciók
 
 1. **Bejelentkezett felhasználó**
    - Pakli építése és kezelése
@@ -161,7 +154,7 @@ ProjectFrontend/
    - Profil megtekintése és szerkesztése
    - Fiók törlése
 
-2. **Vendég**
+2. **Nem bejelentkezett felhasználó**
    - Főoldal megtekintése
    - Leírás olvasása
    - Regisztráció / bejelentkezés
@@ -181,6 +174,9 @@ ProjectFrontend/
 ### Reszponzivitás
 
 Az alkalmazás mobil és asztali nézetben is használható. A méretek `min()` és `vw` alapú értékekkel vannak meghatározva.
+
+<img width="2709" height="1500" alt="Group 1" src="https://github.com/user-attachments/assets/36c9221a-3a48-4493-a142-53c1161ed509" />
+
 
 ---
 
