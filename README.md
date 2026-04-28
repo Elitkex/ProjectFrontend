@@ -208,3 +208,7 @@ A projekt manuálisan lett tesztelve böngészőben, mobil nézetben és külön
 - [Postman](https://www.postman.com)
 - [GitHub](https://github.com)
 - [phpMyAdmin](https://www.phpmyadmin.net)
+
+ ### Backend
+
+ - [Github repo](https://github.com/Elitkex/ProjectBackend)
