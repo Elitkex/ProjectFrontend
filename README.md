@@ -184,6 +184,15 @@ Az alkalmazás mobil és asztali nézetben is használható. A méretek `min()` 
 
 A projekt manuálisan lett tesztelve böngészőben, mobil nézetben és különböző képernyőméreteken.
 
+Teszt felhasználó: 
+- email: teszt@gmail.com
+- felhasználónév: teszt
+- jelszó: teszt
+
+Internetes elérhetőség (deploy): 
+
+https://mydeckbuilder.netlify.app/
+
 ---
 
 ### Továbbfejlesztési lehetőség
