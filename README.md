@@ -1,4 +1,4 @@
-# Clash Royale Pakli Építő – Frontend
+<img width="1919" height="952" alt="image" src="https://github.com/user-attachments/assets/0245675e-3a12-4d46-8d9c-aec084fa1298" /><img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/ad6f63c0-2831-45b8-ae69-106196f9ef89" /><img width="1919" height="954" alt="image" src="https://github.com/user-attachments/assets/d44c4ddb-8209-4c3a-aeff-9eda176e8f9e" /><img width="1919" height="950" alt="image" src="https://github.com/user-attachments/assets/9e31de2c-b720-4407-8b12-c4e1289db55f" /># Clash Royale Pakli Építő – Frontend
 
 > Clash Royale-ihlette webalkalmazás, ahol regisztrált felhasználók egyedi paklikat építhetnek a játék kártyáiból, kezelhetik fiókjukat és böngészhetik a kártyákat.
 
@@ -101,55 +101,55 @@ ProjectFrontend/
 
    Főoldal: Sign-up és Log-in gombok, info gomb a leíráshoz.
    
-   ![](https://snipboard.io/27hbHG.jpg)
+   ![](https://snipboard.io/XeDtzh.jpg)
 
 3. #### `/signup` – Regisztráció
 
    Regisztrációs oldal: felhasználónév, email, jelszó és jelszó megerősítés megadása. Sikeres regisztráció után átirányít a bejelentkezési oldalra.
 
-   ![](https://snipboard.io/HJ7TxK.jpg)
+   ![](https://snipboard.io/8ZOzQI.jpg)
 
 5. #### `/login` – Bejelentkezés
 
    Bejelentkezési oldal: email és jelszó megadása, Remember me funkció az adatok mentéséhez.
 
-   ![](https://snipboard.io/y0r5fj.jpg)
+   ![](https://snipboard.io/7OKlPA.jpg)
 
 7. #### `/home` – Főmenü
 
    Főmenü: Deck Builder, Edit Profile és Log-out gombok. Jobb alsó sarokban a bejelentkezett felhasználó neve látható.
 
-   ![](https://snipboard.io/zfRvyl.jpg)
+   ![](https://snipboard.io/G8O9Vf.jpg)
 
 9. #### `/deck` – Pakli építő
 
    Pakli építő: max 2 pakli létrehozása, paklinként 8 kártyahely. Kártyára kattintva megnyílik a kártya választó. Statisztikák: átlagos elixír, sebzés, támadási sebesség.
    
-   ![]()
+   ![](https://snipboard.io/kXaYcJ.jpg)
 
 11. #### `/cardselection` – Kártya választó
 
    Kártya választó: az összes Clash Royale kártya rácsban megjelenítve képpel, névvel és elixír költséggel. A már pakliban lévő kártyák szürkítve jelennek meg.
    
-   ![]()
+   ![](https://snipboard.io/iZJFPO.jpg)
 
 11. #### `/profile` – Profil
 
    Profil oldal: felhasználónév, email és ID megtekintése. Edit Profile gombbal átnavigál a beállításokra.
 
-   ![]()
+   ![](https://snipboard.io/l9Pp1R.jpg)
 
 11. #### `/settings` – Beállítások
 
    Beállítások: felhasználónév, email és jelszó módosítása, fiók törlése megerősítő popuppal.
 
-   ![]()
+   ![](https://snipboard.io/Dk4QX0.jpg)
 
 11. #### `/description` – Leírás
 
    Az alkalmazás leírása.
 
-   ![]()
+   ![](https://snipboard.io/5dwSq8.jpg)
 
 ---
 
